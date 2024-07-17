@@ -3,6 +3,8 @@ interface SearchBarProps {
   setSearchTerm: (term: string) => void;
 }
 
+// This is a simple searchbar component
+
 const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, setSearchTerm }) => {
   return (
     <input

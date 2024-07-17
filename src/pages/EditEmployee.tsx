@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateEmployee } from "../redux/employee-slice";
@@ -18,6 +18,12 @@ const EditEmployee: React.FC = () => {
     dispatch(updateEmployee(updatedEmployee));
     navigate("/");
   };
+
+  useEffect(() => {
+    if (!employee) {
+      navigate("/"); // Redirect to home if employee not found
+    }
+  }, [employee, navigate]);
 
   if (!employee) {
     return <div className="container mx-auto p-4">Loading...</div>;

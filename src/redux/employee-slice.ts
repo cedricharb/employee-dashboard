@@ -20,20 +20,11 @@ export const fetchEmployees = createAsyncThunk(
   }
 );
 
-const generateId = () => {
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
-    const r = (Math.random() * 16) | 0,
-      v = c === "x" ? r : (r & 0x3) | 0x8;
-    return v.toString(16); //generate a uuid
-  });
-};
-
 const employeeSlice = createSlice({
   name: "employees",
   initialState,
   reducers: {
     addEmployee(state, action: PayloadAction<Employee>) {
-      action.payload.id = generateId();
       state.employees.push(action.payload);
     },
     updateEmployee(state, action: PayloadAction<Employee>) {
@@ -43,6 +34,11 @@ const employeeSlice = createSlice({
       if (index !== -1) {
         state.employees[index] = action.payload;
       }
+    },
+    deleteEmployee(state, action: PayloadAction<string>) {
+      state.employees = state.employees.filter(
+        (emp) => emp.id !== action.payload
+      );
     },
   },
   extraReducers: (builder) => {
@@ -63,6 +59,7 @@ const employeeSlice = createSlice({
   },
 });
 
-export const { addEmployee, updateEmployee } = employeeSlice.actions;
+export const { addEmployee, updateEmployee, deleteEmployee } =
+  employeeSlice.actions;
 
 export default employeeSlice.reducer;

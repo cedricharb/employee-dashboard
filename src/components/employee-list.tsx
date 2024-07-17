@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEmployees } from "../redux/employee-slice";
-import { RootState } from "../redux/store";
+import { RootState, AppDispatch } from "../redux/store";
 import EmployeeCard from "./employee-card";
 import SearchBar from "./searchbar";
-import { UnknownAction } from "@reduxjs/toolkit";
+
+// This is the main component in the home page
 
 const EmployeeList: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>(); // Specify the correct type for dispatch
   const employees = useSelector(
     (state: RootState) => state.employees.employees
   );
@@ -16,11 +17,12 @@ const EmployeeList: React.FC = () => {
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchEmployees() as unknown as UnknownAction);
+      dispatch(fetchEmployees()); // Fetch employees when component mounts
     }
   }, [status, dispatch]);
 
   const filteredEmployees = employees.filter((employee) =>
+    // This is the search functionality, searches for employees whose name includes the string searched
     employee.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -29,11 +31,7 @@ const EmployeeList: React.FC = () => {
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredEmployees.map((employee) => (
-          <EmployeeCard
-            key={employee.id}
-            employee={employee}
-            linkTo={`/edit/${employee.id}`}
-          />
+          <EmployeeCard key={employee.id} employee={employee} />
         ))}
       </div>
     </div>

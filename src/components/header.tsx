@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+// This is the header for extra navigation capabilities such as add employee or return to home page
+
 const Header: React.FC = () => {
   return (
     <nav className="bg-gray-800 p-4">

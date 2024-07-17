@@ -1,16 +1,22 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import EmployeeForm from "../components/employee-form";
 import { addEmployee } from "../redux/employee-slice";
+import EmployeeForm from "../components/employee-form";
 import { Employee } from "../lib/types/employee";
+
+const generateId = () => {
+  // Example of generating a unique ID (use a library like uuid for production)
+  return Math.random().toString(36).substr(2, 9);
+};
 
 const AddEmployee: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleAddEmployee = (employee: Employee) => {
-    dispatch(addEmployee(employee));
+    const employeeWithId = { ...employee, id: generateId() }; // Generate ID before adding
+    dispatch(addEmployee(employeeWithId));
     navigate("/");
   };
 
