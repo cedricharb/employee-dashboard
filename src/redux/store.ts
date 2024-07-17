@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import employeeReducer from "./employee-slice";
 
 const store = configureStore({
+  // Store is used for abstraction mostly
   reducer: {
     employees: employeeReducer,
   },

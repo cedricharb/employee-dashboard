@@ -1,6 +1,8 @@
 import React from "react";
 import EmployeeList from "../components/employee-list";
 
+// The home page
+
 const Home: React.FC = () => {
   return (
     <div className="container mx-auto p-4">

@@ -6,12 +6,12 @@ import EmployeeForm from "../components/employee-form";
 import { Employee } from "../lib/types/employee";
 
 const generateId = () => {
-  // Example of generating a unique ID (use a library like uuid for production)
+  // This is an example function of what an ID could look like, this particular one is called uuid
   return Math.random().toString(36).substr(2, 9);
 };
 
 const AddEmployee: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // Dispatch is used so we can call actions from redux
   const navigate = useNavigate();
 
   const handleAddEmployee = (employee: Employee) => {

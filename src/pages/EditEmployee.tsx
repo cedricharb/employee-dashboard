@@ -11,6 +11,7 @@ const EditEmployee: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const employee = useSelector((state: RootState) =>
+    // Selector is used to use partial data from the redux state, in this case only the employee to be edited
     state.employees.employees.find((emp) => emp.id === id)
   );
 
@@ -26,6 +27,7 @@ const EditEmployee: React.FC = () => {
   }, [employee, navigate]);
 
   if (!employee) {
+    // A loading state while we get the user from redux, or from the database if that was the case
     return <div className="container mx-auto p-4">Loading...</div>;
   }
 
