@@ -1,8 +1,26 @@
-# Getting Started with Create React App
+# Steps to run the WebApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Step 1: Installation of the project
 
-## Available Scripts
+### First, we need to clone th repository using the following command
+
+### `git clone https://github.com/cedricharb/employee-dashboard.git`
+
+## Step 2: Installation of libraries
+
+### Next, we need install all the dependencies for the project
+
+### `npm i` or `npm install`
+
+## Step 3: Running the project
+
+### Finally, to run the project, we use the following command
+
+### `npm start`
+
+### Now we should be able to go to `localhost:3000` and the website should be running
+
+## Other Scripts
 
 In the project directory, you can run:
 
